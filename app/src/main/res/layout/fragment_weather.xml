@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".WeatherFragment"
+    android:background="@color/dark_grayblue">
+
+<!--    Progress Bar takes up no space when not shown-->
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBarId"
+        android:visibility="visible"
+        android:layout_centerInParent="true"/>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/homeId"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@color/dark_grayblue"
+            android:id="@+id/backgroundId"/>
+
+        <TextView
+            android:id="@+id/cityNameId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="City Name"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"
+            android:padding="20dp"
+            android:textSize="@dimen/city_text_size"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/LinearLayoutid"
+            android:layout_below="@id/cityNameId"
+            android:weightSum="5">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="8dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchBarCity"
+                android:layout_margin="@dimen/layout_margin"
+                android:layout_weight="4.5"
+                android:hint="@string/enter_city_name"
+                android:textColorHint="@color/white"
+                app:hintTextColor="@color/white"
+                android:padding="5dp"
+                android:background="@android:color/transparent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/editSearchBarCityId"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/searchbar_text_size"
+                    android:background="@android:color/transparent"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:id="@+id/searchIconId"
+                android:layout_margin="@dimen/layout_margin"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/search_icon"
+                app:tint="@color/white"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/currentTemperatureId"
+            android:layout_below="@id/LinearLayoutid"
+            android:layout_margin="@dimen/layout_margin"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="23"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_temp_text_size"/>
+
+        <ImageView
+            android:id="@+id/conditionIconId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/currentTemperatureId"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/layout_margin"
+            android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/currentWeatherConditionId"
+            android:layout_margin="@dimen/layout_margin"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="Weather Condition"
+            android:textColor="@color/white"
+            android:layout_below="@id/conditionIconId"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="@dimen/layout_margin"
+            android:textColor="@color/white"
+            android:text="Hourly Forecast"
+            android:textStyle="bold"
+            android:layout_above="@id/hourlyWeatherId"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/hourlyWeatherId"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
