@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/sign_in_frament">
+
+    <fragment
+        android:id="@+id/sign_in_frament"
+        android:name="com.zybooks.cop4656weatherapp.SignInFragment"
+        android:label="Sign In Fragment">
+        <action
+            android:id="@+id/action_signin_to_weatherdisplay"
+            app:destination="@id/weather_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/weather_fragment"
+        android:name="com.zybooks.cop4656weatherapp.WeatherFragment"
+        android:label="Weather Fragment">
+    </fragment>
+
+    <!-- Add more fragments as needed -->
+
+</navigation>

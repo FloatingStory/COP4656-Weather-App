@@ -12,14 +12,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progressBarId"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_centerInParent="true"/>
     
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/homeId"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:layout_width="match_parent"
@@ -96,14 +96,14 @@
             android:textColor="@color/white"
             android:textSize="@dimen/main_temp_text_size"/>
 
-        <ImageView
-            android:id="@+id/conditionIconId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/currentTemperatureId"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/layout_margin"
-            android:src="@mipmap/ic_launcher"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/conditionIconId"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/currentTemperatureId"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_margin="@dimen/layout_margin"-->
+<!--            android:src="@mipmap/ic_launcher"/>-->
 
         <TextView
             android:layout_width="match_parent"
@@ -114,7 +114,7 @@
             android:textAlignment="center"
             android:text="Weather Condition"
             android:textColor="@color/white"
-            android:layout_below="@id/conditionIconId"/>
+            android:layout_below="@id/currentTemperatureId"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -124,15 +124,16 @@
             android:textColor="@color/white"
             android:text="Hourly Forecast"
             android:textStyle="bold"
-            android:layout_above="@id/hourlyWeatherId"
+            android:layout_below="@id/currentWeatherConditionId"
             />
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/hourlyWeatherId"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+<!--        Might just display a block of text of next hour-->
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/hourlyWeatherId"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:orientation="horizontal"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>-->
 
     </RelativeLayout>
 
