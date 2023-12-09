@@ -12,14 +12,54 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="SIGN IN"
+        android:layout_margin="@dimen/layout_margin"
         android:textSize="70sp"/>
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username:"
+        android:textSize="@dimen/city_text_size"
+        android:layout_below="@id/signin_text"
+        android:padding="30dp"/>
+
+    <EditText
+        android:id="@+id/username_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signin_text"
+        android:layout_marginLeft="-15dp"
+        android:layout_marginTop="32dp"
+        android:layout_toRightOf="@id/username"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location:"
+        android:textSize="@dimen/city_text_size"
+        android:layout_below="@id/username"
+        android:padding="30dp"/>
+
+    <EditText
+        android:id="@+id/location_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:layout_marginLeft="-4dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/location"
+        android:ems="10" />
 
     <Button
         android:id="@+id/submit_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/signin_text"
-        android:text="Submit"
-        android:textSize="20dp" />
+        android:layout_centerInParent="true"
+        android:layout_below="@id/location"
+        android:text="@string/submit"
+        android:textSize="20sp" />
 
 </RelativeLayout>
