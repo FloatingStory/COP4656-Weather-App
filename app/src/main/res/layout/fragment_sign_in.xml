@@ -5,21 +5,30 @@
     android:layout_height="match_parent"
     tools:context=".SignInFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/title_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/weather_app"
+        android:textSize="40sp"
+        android:layout_margin="@dimen/layout_margin"/>
+
     <TextView
         android:id="@+id/signin_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="SIGN IN"
+        android:text="@string/sign_in"
         android:layout_margin="@dimen/layout_margin"
-        android:textSize="70sp"/>
+        android:textSize="30sp"
+        android:layout_below="@id/title_label"/>
 
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username:"
+        android:text="@string/username"
         android:textSize="@dimen/city_text_size"
         android:layout_below="@id/signin_text"
         android:padding="30dp"/>
@@ -38,7 +47,7 @@
         android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location:"
+        android:text="@string/location"
         android:textSize="@dimen/city_text_size"
         android:layout_below="@id/username"
         android:padding="30dp"/>
