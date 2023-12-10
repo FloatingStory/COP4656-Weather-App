@@ -21,11 +21,14 @@ public class WeatherFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if (bundle != null) {
+            //get data from sign in
             username = bundle.getString("user");
             location = bundle.getString("location");
             Toast.makeText(requireActivity(), username+" "+location, Toast.LENGTH_SHORT).show();
         }
-        else{Toast.makeText(requireActivity(), location, Toast.LENGTH_SHORT).show();}
+        else{
+            Toast.makeText(requireActivity(), "Error: Issue with passing data", Toast.LENGTH_SHORT).show();
+        }
         return parentView;
     }
 
