@@ -96,15 +96,6 @@
             android:textColor="@color/white"
             android:textSize="@dimen/main_temp_text_size"/>
 
-<!--        <ImageView-->
-<!--            android:id="@+id/conditionIconId"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/currentTemperatureId"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:layout_margin="@dimen/layout_margin"-->
-<!--            android:src="@mipmap/ic_launcher"/>-->
-
         <TextView
             android:id="@+id/currentWeatherConditionId"
             android:layout_width="match_parent"
@@ -119,26 +110,6 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp"/>
-
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="8dp"-->
-<!--            android:layout_marginBottom="@dimen/layout_margin"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:text="Hourly Forecast"-->
-<!--            android:textStyle="bold"-->
-<!--            android:layout_below="@id/currentWeatherConditionId"-->
-<!--            />-->
-
-<!--        Might just display a block of text of next hour-->
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/hourlyWeatherId"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:orientation="horizontal"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>-->
 
     </RelativeLayout>
 

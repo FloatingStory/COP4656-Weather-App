@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +54,8 @@ public class WeatherFragment extends Fragment {
     ImageView searchButton;
     TextInputEditText searchedCityField;
     String searchedCity;
+    ProgressBar progressBar;
+    RelativeLayout weatherDisplay;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,7 +64,10 @@ public class WeatherFragment extends Fragment {
         context = parentView.getContext();
         searchButton = parentView.findViewById(R.id.searchIconId);
         searchedCityField = parentView.findViewById(R.id.editSearchBarCityId);
-
+        progressBar = parentView.findViewById(R.id.progressBarId);
+        weatherDisplay = parentView.findViewById(R.id.homeId);
+        progressBar.setVisibility(View.VISIBLE);
+        weatherDisplay.setVisibility(View.GONE);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -90,6 +97,8 @@ public class WeatherFragment extends Fragment {
                     if(CityValidation.isCityValid(getContext(), searchedCity)){
                         Log.d("ISVALID",searchedCity);
                         mCity = searchedCity;
+                        progressBar.setVisibility(View.VISIBLE);
+                        weatherDisplay.setVisibility(View.GONE);
                         getWeatherDetails(parentView);
                         cityNameView.setText(mCity);
 
@@ -139,6 +148,9 @@ public class WeatherFragment extends Fragment {
                     Log.d("url", tempUrl);
                     SecondRequest(tempUrl);
 
+                    progressBar.setVisibility(View.GONE);
+                    weatherDisplay.setVisibility(View.VISIBLE);
+
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -148,8 +160,8 @@ public class WeatherFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
-                navController = Navigation.findNavController(view);
-                navController.navigate(R.id.action_signin_to_weatherdisplay);
+                progressBar.setVisibility(View.GONE);
+                weatherDisplay.setVisibility(View.VISIBLE);
             }
         });
 

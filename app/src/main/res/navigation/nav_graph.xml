@@ -23,6 +23,4 @@
             app:destination="@id/sign_in_fragment" />
     </fragment>
 
-    <!-- Add more fragments as needed -->
-
 </navigation>
