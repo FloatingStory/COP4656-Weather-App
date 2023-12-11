@@ -51,7 +51,16 @@ public class SignInFragment extends Fragment {
                 if(userSharedPref.contains(usernameText)){
                     //if username already exists in shared preferences
                     //might be able to do thread here to get values from api
-                    mCity = userSharedPref.getString(usernameText,"");
+                    //if user input of city is empty check shared preference for saved location(persisted data)
+                    if(mCity.isEmpty()) {
+                        mCity = userSharedPref.getString(usernameText, "");
+                    }
+                    else{
+                        //if user input of city is not empty, change persisted data of this user's location to the new one
+                        editor = userSharedPref.edit();
+                        editor.putString(usernameText, mCity);
+                        editor.apply();
+                    }
                     Log.d("WAFFLE",mCity);
                 }
                 else{
