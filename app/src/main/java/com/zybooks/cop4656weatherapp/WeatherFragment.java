@@ -110,6 +110,8 @@ public class WeatherFragment extends Fragment {
                         editor.apply();
                     }
                     else{
+                        progressBar.setVisibility(View.GONE);
+                        weatherDisplay.setVisibility(View.VISIBLE);
                         Toast.makeText(requireActivity(),"Error: Invalid City",Toast.LENGTH_SHORT).show();
                     }
                 }
