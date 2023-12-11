@@ -20,8 +20,24 @@ public class CityValidation {
             Log.d("address gotten", cityName+": "+address.toString());
             //check what is returned
             if (address != null && address.size() > 0) {
-                //city name valid
-                return true;
+                Log.d("Locality above", cityName);
+                Address address1 = address.get(0);
+                Log.d("Locality above", address1.toString());
+                if(address1.getLocality() != null) {
+                    String city = address1.getLocality();
+                    Log.d("Locality", city);
+                    city = city.toUpperCase();
+                    cityName = cityName.toUpperCase();
+                    Log.d("ADDRESS CITY", city);
+                    Log.d("PASSED CITY", cityName);
+                    if (city.equals(cityName)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+//                //city name valid
+//                return true;
+                }
             } else {
                 //no city name
                 return false;
@@ -31,5 +47,6 @@ public class CityValidation {
             Log.d("ERROR city", cityName);
             return false;
         }
+        return false;
     }
 }
