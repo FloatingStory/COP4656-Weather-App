@@ -18,6 +18,9 @@
         android:id="@+id/weather_fragment"
         android:name="com.zybooks.cop4656weatherapp.WeatherFragment"
         android:label="Weather Fragment">
+        <action
+            android:id="@+id/action_weatherdisplay_to_signin"
+            app:destination="@id/sign_in_fragment" />
     </fragment>
 
     <!-- Add more fragments as needed -->
