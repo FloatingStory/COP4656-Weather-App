@@ -78,11 +78,10 @@ public class SignInFragment extends Fragment {
 
                     navController = Navigation.findNavController(view);
                     navController.navigate(R.id.action_signin_to_weatherdisplay,bundle);
-                    //move fro
+                    //move from sign in to weather display and pass data of user and location
                 }
                 else{
                     //get location and see if it is a valid one, toast error is username is empty or location is invalid
-//                    Toast.makeText(requireActivity(), "insignin "+usernameText+" "+locationText, Toast.LENGTH_SHORT).show();
                     if(!usernameText.isEmpty()){   //have to add a check for valid city
                         editor = userSharedPref.edit();
                         editor.putString(usernameText, mCity);
@@ -97,6 +96,7 @@ public class SignInFragment extends Fragment {
                         navController.navigate(R.id.action_signin_to_weatherdisplay,bundle);
                     }
                     else{
+                        //error in user input
                         String errorMessage = "Error: Empty username";
                         userLabel.setTextColor(ContextCompat.getColor(requireContext(), R.color.red));
                         if(mCity.isEmpty()){
