@@ -134,6 +134,7 @@ public class WeatherFragment extends Fragment {
                             + "\n Pressure: " + pressure + "bpa";
                     tempTv.setText(df.format(temp));
                     descriptionTv.setText(output);
+                    Log.d("HEYO","change added");
 
                 } catch (JSONException e){
                     e.printStackTrace();

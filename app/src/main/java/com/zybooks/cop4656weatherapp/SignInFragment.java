@@ -23,7 +23,8 @@ public class SignInFragment extends Fragment {
     private Button submitButton;
     private EditText username;
     private EditText cityEt;
-    SharedPreferences namedSharedPref;
+    SharedPreferences userSharedPref;
+    SharedPreferences.Editor editor;
 
     private String usernameText;
     private String mCity;
@@ -37,7 +38,7 @@ public class SignInFragment extends Fragment {
         cityEt = view.findViewById(R.id.city_input);
 
         //create/get a shared preference(make is so key is the username and value is the location)
-        namedSharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
+        userSharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,13 +47,21 @@ public class SignInFragment extends Fragment {
                 mCity = cityEt.getText().toString();
                 //when submit button is clicked, validate data(user and location), move to weather it data is valid
                 //else return toast
-                if(namedSharedPref.contains(usernameText)){
+
+                if(userSharedPref.contains(usernameText)){
                     //if username already exists in shared preferences
                     //might be able to do thread here to get values from api
+                    mCity = userSharedPref.getString(usernameText,"");
+                    Log.d("WAFFLE",mCity);
                 }
                 else{
                     //get location and see if it is a valid one, toast error is username is empty or location is invalid
 //                    Toast.makeText(requireActivity(), "insignin "+usernameText+" "+locationText, Toast.LENGTH_SHORT).show();
+                    if(!usernameText.isEmpty()){   //have to add a check for valid city
+                        editor = userSharedPref.edit();
+                        editor.putString(usernameText, mCity);
+                        editor.apply();
+                    }
                 }
 
                 //pass user and location data to weather fragment
