@@ -22,11 +22,11 @@ public class SignInFragment extends Fragment {
     private NavController navController;
     private Button submitButton;
     private EditText username;
-    private EditText location;
+    private EditText cityEt;
     SharedPreferences namedSharedPref;
 
     private String usernameText;
-    private String locationText;
+    private String mCity;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class SignInFragment extends Fragment {
         // Inflate the layout for this fragment
         submitButton = view.findViewById(R.id.submit_button);
         username = view.findViewById(R.id.username_input);
-        location = view.findViewById(R.id.location_input);
+        cityEt = view.findViewById(R.id.city_input);
 
         //create/get a shared preference(make is so key is the username and value is the location)
         namedSharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
@@ -43,7 +43,7 @@ public class SignInFragment extends Fragment {
             public void onClick(View v) {
                 //get user input from sign in
                 usernameText = username.getText().toString();
-                locationText = location.getText().toString();
+                mCity = cityEt.getText().toString();
                 //when submit button is clicked, validate data(user and location), move to weather it data is valid
                 //else return toast
                 if(namedSharedPref.contains(usernameText)){
@@ -58,7 +58,7 @@ public class SignInFragment extends Fragment {
                 //pass user and location data to weather fragment
                 Bundle bundle = new Bundle();
                 bundle.putString("user", usernameText);
-                bundle.putString("location", locationText);
+                bundle.putString("city", mCity);
 
                 navController = Navigation.findNavController(view);
                 navController.navigate(R.id.action_signin_to_weatherdisplay,bundle);

@@ -47,19 +47,20 @@
         android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/location"
+        android:text="@string/city"
         android:textSize="@dimen/city_text_size"
         android:layout_below="@id/username"
         android:padding="30dp"/>
 
     <EditText
-        android:id="@+id/location_input"
+        android:id="@+id/city_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/username"
         android:layout_marginLeft="-4dp"
         android:layout_marginTop="30dp"
         android:layout_toRightOf="@id/location"
+        android:layout_alignLeft="@id/username_input"
         android:ems="10" />
 
     <TextView
@@ -68,7 +69,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/layout_margin"
         android:text="@string/loc_hint"
-        android:layout_below="@id/location_input"/>
+        android:layout_below="@id/city_input"/>
 
     <Button
         android:id="@+id/submit_button"
@@ -78,5 +79,6 @@
         android:layout_below="@id/infoloc"
         android:text="@string/submit"
         android:textSize="20sp" />
+
 
 </RelativeLayout>

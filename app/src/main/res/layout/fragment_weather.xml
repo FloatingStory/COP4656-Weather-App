@@ -106,15 +106,19 @@
 <!--            android:src="@mipmap/ic_launcher"/>-->
 
         <TextView
+            android:id="@+id/currentWeatherConditionId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/currentWeatherConditionId"
-            android:layout_margin="@dimen/layout_margin"
+            android:layout_below="@id/currentTemperatureId"
+            android:layout_marginStart="@dimen/layout_margin"
+            android:layout_marginTop="@dimen/layout_margin"
+            android:layout_marginEnd="@dimen/layout_margin"
+            android:layout_marginBottom="@dimen/layout_margin"
             android:gravity="center"
-            android:textAlignment="center"
             android:text="Weather Condition"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:layout_below="@id/currentTemperatureId"/>
+            android:textSize="20dp"/>
 
         <TextView
             android:layout_width="match_parent"
