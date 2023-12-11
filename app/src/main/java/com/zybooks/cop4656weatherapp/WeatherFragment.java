@@ -45,6 +45,7 @@ public class WeatherFragment extends Fragment {
     private double longitude;
     View parentView;
     Context context;
+    TextView cityNameView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -62,6 +63,10 @@ public class WeatherFragment extends Fragment {
             Toast.makeText(requireActivity(), username+" "+mCity, Toast.LENGTH_SHORT).show();
             tempTv = parentView.findViewById(R.id.currentTemperatureId);
             descriptionTv = parentView.findViewById(R.id.currentWeatherConditionId);
+            cityNameView = parentView.findViewById((R.id.cityNameId));
+            cityNameView.setText(mCity);
+            //set city name in weather display
+
             Log.d("BEFORE STUFF","wooo");
             getWeatherDetails(parentView);
             Log.d("AFTER  STUFF",mCity);
@@ -152,7 +157,7 @@ public class WeatherFragment extends Fragment {
                             + "\n Wind Speed: " + wind + "m/s (meters per second)"
                             + "\n Cloudiness: " + clouds + "%"
                             + "\n Pressure: " + pressure + "bpa";
-                    tempTv.setText(df.format(temp));
+                    tempTv.setText(df.format(temp)+"°F");
                     descriptionTv.setText(output);
                     Log.d("HEYO","change added");
 
