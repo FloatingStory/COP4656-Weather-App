@@ -78,13 +78,23 @@ public class WeatherFragment extends Fragment {
         StringRequest latRequest = new StringRequest(Request.Method.GET, locUrl+mCity +"&limit=1&appid="+apiKey, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                String tempUrl = "";
                 Log.d("response", response);
                 try {
                     JSONArray JSONresponse = new JSONArray(response);
 
                     latitude = JSONresponse.getJSONObject(0).getDouble("lat");
                     longitude= JSONresponse.getJSONObject(0).getDouble("lon");
-                    //Log.d("response", Double.toString(latitude));
+                    Log.d("response", Double.toString(latitude));
+                    //Append url with latitude and longitude
+                    if(!city.equals("")){
+                        tempUrl = url + latitude +"&lon=" + longitude + "&appid=" + apiKey;
+                    }else{
+                        tempUrl = url + "?q" + city +"&appid=" + apiKey;
+                    }
+                    Log.d("url", tempUrl);
+                    SecondRequest(tempUrl);
+
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -97,12 +107,17 @@ public class WeatherFragment extends Fragment {
 
             }
         });
-        //Append url with latitude and longitude
-        if(!city.equals("")){
-            tempUrl = url + latitude +"&lon=" + longitude + "&appid=" + apiKey;
-        }else{
-            tempUrl = url + "?q" + city +"&appid=" + apiKey;
-        }
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(latRequest);
+
+    }
+
+//    public void loadWeatherInfo(){}
+
+    public void SecondRequest(String tempUrl)
+    {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, tempUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -145,11 +160,7 @@ public class WeatherFragment extends Fragment {
                 Toast.makeText(getContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(latRequest);
-        requestQueue.add(stringRequest);
+        Volley.newRequestQueue(getContext()).add(stringRequest);
     }
-
-//    public void loadWeatherInfo(){}
 
 }
