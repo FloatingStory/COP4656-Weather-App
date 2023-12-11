@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +33,7 @@ public class WeatherFragment extends Fragment {
     String username;
     String mCity;
     String mCountry;
+    private NavController navController;
 
     private final String url = "https://api.openweathermap.org/data/2.5/weather?lat=";
     private final String apiKey ="f6c78d88533411d54d5d5a49c06dd258";
@@ -59,7 +62,9 @@ public class WeatherFragment extends Fragment {
             Toast.makeText(requireActivity(), username+" "+mCity, Toast.LENGTH_SHORT).show();
             tempTv = parentView.findViewById(R.id.currentTemperatureId);
             descriptionTv = parentView.findViewById(R.id.currentWeatherConditionId);
+            Log.d("BEFORE STUFF","wooo");
             getWeatherDetails(parentView);
+            Log.d("AFTER  STUFF",mCity);
 
         }
         else{
@@ -82,7 +87,6 @@ public class WeatherFragment extends Fragment {
                 Log.d("response", response);
                 try {
                     JSONArray JSONresponse = new JSONArray(response);
-
                     latitude = JSONresponse.getJSONObject(0).getDouble("lat");
                     longitude= JSONresponse.getJSONObject(0).getDouble("lon");
                     Log.d("response", Double.toString(latitude));
@@ -104,7 +108,8 @@ public class WeatherFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
-
+                navController = Navigation.findNavController(view);
+                navController.navigate(R.id.action_signin_to_weatherdisplay);
             }
         });
 
