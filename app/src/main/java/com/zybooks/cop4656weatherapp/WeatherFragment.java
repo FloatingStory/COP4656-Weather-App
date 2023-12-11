@@ -1,6 +1,7 @@
 package com.zybooks.cop4656weatherapp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -46,12 +49,17 @@ public class WeatherFragment extends Fragment {
     View parentView;
     Context context;
     TextView cityNameView;
+    ImageView searchButton;
+    TextInputEditText searchedCityField;
+    String searchedCity;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         parentView = inflater.inflate(R.layout.fragment_weather, container, false);
 
         context = parentView.getContext();
+        searchButton = parentView.findViewById(R.id.searchIconId);
+        searchedCityField = parentView.findViewById(R.id.editSearchBarCityId);
 
 
         Bundle bundle = getArguments();
@@ -60,7 +68,7 @@ public class WeatherFragment extends Fragment {
             username = bundle.getString("user");
             mCity = bundle.getString("city");
             mCountry = bundle.getString("country");
-            Toast.makeText(requireActivity(), username+" "+mCity, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(requireActivity(), username+" "+mCity, Toast.LENGTH_SHORT).show();
             tempTv = parentView.findViewById(R.id.currentTemperatureId);
             descriptionTv = parentView.findViewById(R.id.currentWeatherConditionId);
             cityNameView = parentView.findViewById((R.id.cityNameId));
@@ -70,6 +78,33 @@ public class WeatherFragment extends Fragment {
             Log.d("BEFORE STUFF","wooo");
             getWeatherDetails(parentView);
             Log.d("AFTER  STUFF",mCity);
+
+            //set listener on search icon
+
+            searchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    searchedCity = searchedCityField.getText().toString();
+                    Log.d("SEARCHING FOR",searchedCity);
+                    //if searched city exists then run
+                    if(CityValidation.isCityValid(getContext(), searchedCity)){
+                        Log.d("ISVALID",searchedCity);
+                        mCity = searchedCity;
+                        getWeatherDetails(parentView);
+                        cityNameView.setText(mCity);
+
+                        //save search valid location in persisted data
+                        SharedPreferences userSharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
+
+                        SharedPreferences.Editor editor = userSharedPref.edit();
+                        editor.putString(username, mCity);
+                        editor.apply();
+                    }
+                    else{
+                        Toast.makeText(requireActivity(),"Error: Invalid City",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
         }
         else{
