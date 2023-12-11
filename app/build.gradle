@@ -32,7 +32,6 @@ dependencies {
     implementation 'com.android.volley:volley:1.2.1'
 //image loading, json parsing, get user location
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
-    implementation 'androidx.navigation:navigation-ui:2.3.5'
 //navigation for easier implementation and moving between fragments
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
