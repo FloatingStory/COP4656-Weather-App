@@ -120,16 +120,17 @@
             android:textColor="@color/white"
             android:textSize="20dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginBottom="@dimen/layout_margin"
-            android:textColor="@color/white"
-            android:text="Hourly Forecast"
-            android:textStyle="bold"
-            android:layout_below="@id/currentWeatherConditionId"
-            />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="8dp"-->
+<!--            android:layout_marginBottom="@dimen/layout_margin"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:text="Hourly Forecast"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_below="@id/currentWeatherConditionId"-->
+<!--            />-->
+
 <!--        Might just display a block of text of next hour-->
 <!--        <androidx.recyclerview.widget.RecyclerView-->
 <!--            android:layout_width="match_parent"-->
