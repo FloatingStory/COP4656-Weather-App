@@ -75,6 +75,8 @@ public class SignInFragment extends Fragment {
                     }
                     else{
                         //if user input of city is not empty, change persisted data of this user's location to the new one
+                        isValidCity = CityValidation.isCityValid(getContext(), mCity);
+                        Log.d("CITYSTUFF", String.valueOf(isValidCity));
                         if(isValidCity) {
                             editor = userSharedPref.edit();
                             editor.putString(usernameText, mCity);
@@ -93,19 +95,11 @@ public class SignInFragment extends Fragment {
                             Toast.makeText(requireActivity(),"Error: Invalid City",Toast.LENGTH_SHORT).show();
                         }
                     }
-//                    Log.d("WAFFLE",mCity);
-//                    //pass user and location data to weather fragment
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("user", usernameText);
-//                    bundle.putString("city", mCity);
-//
-//                    navController = Navigation.findNavController(view);
-//                    navController.navigate(R.id.action_signin_to_weatherdisplay,bundle);
-                    //move from sign in to weather display and pass data of user and location
                 }
                 else{ //if first time using username
                     //get location and see if it is a valid one, toast error is username is empty or location is invalid
                     if(!usernameText.isEmpty()){   //if username if not empty
+                        isValidCity = CityValidation.isCityValid(getContext(), mCity);
                         if(isValidCity) {          //if city is valid
                             editor = userSharedPref.edit();
                             editor.putString(usernameText, mCity);
@@ -128,7 +122,8 @@ public class SignInFragment extends Fragment {
                         //error in user input
                         String errorMessage = "Error: Empty username";
                         userLabel.setTextColor(ContextCompat.getColor(requireContext(), R.color.red));
-                        if(mCity.isEmpty()){
+                        isValidCity = CityValidation.isCityValid(getContext(), mCity);
+                        if(mCity.isEmpty() || !isValidCity){
                             errorMessage += "\nError: Invalid City";
                             cityLabel.setTextColor(ContextCompat.getColor(requireContext(), R.color.red));
                         }
