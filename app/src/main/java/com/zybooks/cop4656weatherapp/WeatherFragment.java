@@ -187,8 +187,17 @@ public class WeatherFragment extends Fragment {
                     JSONObject jsonObjectWeather = jsonArray.getJSONObject(0);
                     String description =jsonObjectWeather.getString("description");
                     JSONObject jsonObjectMain = jsonResponse.getJSONObject("main");
-                    double temp = jsonObjectMain.getDouble("temp") - 273.15;
-                    temp = temp * 1.8 + 32;
+
+
+                    // Create a background thread
+                    Thread thread = new Thread(() -> {
+                        double temp = convertTemp(jsonObjectMain);
+                        tempTv.setText(df.format(temp)+"°F");
+                    });
+
+                    thread.start();
+//                    double temp = jsonObjectMain.getDouble("temp") - 273.15;
+//                    temp = temp * 1.8 + 32;
                     double feelsLike = jsonObjectMain.getDouble("feels_like") - 273.15;
                     float pressure = jsonObjectMain.getInt("pressure");
                     int humidity = jsonObjectMain.getInt("humidity");
@@ -198,14 +207,15 @@ public class WeatherFragment extends Fragment {
                     String wind = jsonClouds.getString("all");
                     JSONObject jsonObjectSys = jsonResponse.getJSONObject("sys");
                     String cityName = jsonResponse.getString("name");
+                    Log.d("THROUGH THREAD","huh");
                     output += "Current weather of " + cityName
-                            + "\n Feels like: " + df.format(feelsLike) + " degF"
+                            + "\n Feels like: " + df.format(feelsLike) + " degC"
                             + "\n Humidity: " + humidity + "%"
                             + "\n Description: " + description
                             + "\n Wind Speed: " + wind + "m/s (meters per second)"
                             + "\n Cloudiness: " + clouds + "%"
                             + "\n Pressure: " + pressure + "bpa";
-                    tempTv.setText(df.format(temp)+"°F");
+//                    tempTv.setText(df.format(temp)+"°F");
                     descriptionTv.setText(output);
                     Log.d("HEYO","change added");
 
@@ -220,6 +230,17 @@ public class WeatherFragment extends Fragment {
             }
         });
         Volley.newRequestQueue(getContext()).add(stringRequest);
+    }
+
+    private double convertTemp(JSONObject jsonTemp){
+        try {
+            double temp = jsonTemp.getDouble("temp") - 273.15;
+            temp = temp * 1.8 + 32;
+            return temp;
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        return 0;
     }
 
 }
